@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radiance Project Maker</title>
+  </head>
+
+  <style>
+    body {
+      background: rgb(38, 38, 39);
+      color: white;
+      font-family: monospace;
+    }
+
+    section {
+        padding: 2rem;
+        margin: 2rem;
+
+        width: fit-content;
+
+        font-size: 16px;
+    }
+
+    section button {
+        border: none;
+        background: rgb(56, 56, 58);
+        color: white;
+        font-family: monospace;
+        width: 120px;
+        height: 90px;
+        border-radius: 10px;
+    }
+
+    section button[class="checked"] {
+        border: solid 2.5px gray;
+    }
+
+    section button[class="blocked"] {
+        opacity: 0.25;
+    }
+  </style>
+
+  <body>
+    <section>
+        <h1>Libraries</h1>
+        <button class="unchecked"><div>Raylib</div></button>
+        <button class="unchecked"><div>Sokol</div></button>
+        <button class="unchecked"><div>SFML</div></button>
+        <button class="unchecked"><div>Pygame</div></button>
+    </section>
+
+    <section>
+        <h1>Languages</h1>
+        <button class="unchecked"><div>C99</div></button>
+        <button class="unchecked"><div>C++</div></button>
+        <button class="unchecked"><div>Zig</div></button>
+        <button class="unchecked"><div>Python</div></button>
+    </section>
+  </body>
+
+  <script>
+    const compatibilities = {
+        // Libs
+        "Raylib": [ "C99", "C++", "Zig", "Python" ],
+        "Sokol": [ "C99", "C++", "Zig" ],
+        "SFML": [ "C99", "C++", "Zig", "Python" ],
+        "Pygame": [ "Python" ],
+        
+        // Languages
+        "C99": [ "Raylib", "Sokol", "SFML" ],
+        "C++": [ "Raylib", "Sokol", "SFML" ],
+        "Zig": [ "Raylib", "Sokol", "SFML" ],
+        "Python": [ "Raylib", "SFML", "Pygame" ],
+    }
+
+    function check(button) {
+        switch (button["className"]) {
+            case "unchecked":
+                buttons.forEach((e) => {
+                    if (!compatibilities[button.textContent].includes(e.textContent)) {
+                        e.className = "blocked";
+                    }
+                });
+
+                button.className = "checked";
+                break;
+
+            case "checked":
+                buttons.forEach((e) => {
+                    e.className = "unchecked";
+                });
+                break;
+
+            case "blocked":
+                buttons.forEach((e) => {
+                    if (!compatibilities[button.textContent].includes(e.textContent)) {
+                        e.className = "blocked";
+                    }
+                    else {
+                        e.className = "unchecked";
+                    }
+                });
+
+                button.className = "checked";
+                break
+        }
+    }
+
+    const buttons = document.querySelectorAll("section button");
+
+    buttons.forEach((e) => {
+        e.addEventListener("click", () => { check(e) });
+    })
+  </script>
+</html>
