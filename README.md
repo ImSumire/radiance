@@ -8,4 +8,4 @@
 <br>
 
 # Installation
-`curl https://imsumire.github.io/radiance/craylib.sh | sh`
+`curl https://imsumire.github.io/radiance/raylibc.sh | sh`
