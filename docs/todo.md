@@ -1,4 +1,4 @@
-- [ ] Implement the C & Raylib env
+- [x] Implement the C & Raylib env
 - [ ] Finish raylibc.sh
 - [x] Create the tar compression automation for each envs
 - [ ] Use pkg/ Raylib instead of the user global installation one

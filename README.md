@@ -6,3 +6,6 @@
   </section>
 </div>
 <br>
+
+# Installation
+`curl https://imsumire.github.io/radiance/craylib.sh | sh`
