@@ -6,10 +6,3 @@
   </section>
 </div>
 <br>
-
-### v0.0.1b notes
-- Build/Hot-reloading implemented
-- Only with C (not 99 yet) & Raylib
-- No docs or docstrings
-- Project initilization not yet complete
-- Web project downloader not implemented
