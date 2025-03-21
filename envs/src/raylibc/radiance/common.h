@@ -3,7 +3,7 @@
 #ifdef RADIANCE_HOT
     typedef struct State {} State;
 #else
-    #include "../../src/main.h"
+    #include "../src/lib.h"
 #endif
 
 typedef struct Lib {

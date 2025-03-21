@@ -15,20 +15,20 @@
 
 
 long lastmodtime = 0;
-void* lib = NULL;
-const char* libpath = "target/hot/libhot.so";
+void* dlib = NULL;
+const char* dlib_path = "target/hot/libhot.so";
 
-void (*libinit)(State*) = NULL;
-void (*libdrop)(State*) = NULL;
-void (*libupdate)(State*) = NULL;
-void (*librender)(State*) = NULL;
+void (*dlib_init)(State*) = NULL;
+void (*dlib_drop)(State*) = NULL;
+void (*dlib_update)(State*) = NULL;
+void (*dlib_render)(State*) = NULL;
 
 
 void reload() {
     // Check exists
-    int fd = open(libpath, O_RDONLY);
+    int fd = open(dlib_path, O_RDONLY);
     if (fd < 0) {
-        printf(HOT_BANNER "Library not found: %s\n", libpath);
+        printf(HOT_BANNER "Library not found: %s\n", dlib_path);
         return;
     }
 
@@ -36,7 +36,7 @@ void reload() {
     // The AI Llama helped me here
     unsigned char magic[4];
     if (read(fd, magic, 4) != 4) {
-        printf(HOT_BANNER "Unable to read: %s\n", libpath);
+        printf(HOT_BANNER "Unable to read: %s\n", dlib_path);
         close(fd);
         return;
     }
@@ -49,90 +49,90 @@ void reload() {
         magic[2] != 0x4c ||
         magic[3] != 0x46
     ) {
-        printf(HOT_BANNER "Invalid ELF file: %s\n", libpath);
+        printf(HOT_BANNER "Invalid ELF file: %s\n", dlib_path);
         close(fd);
         return;
     }
 
     close(fd);
 
-    // At this state, the lib is valid
+    // At this state, the dlib is valid
 
     printf(HOT_BANNER "𐬽 Reloading library...\n");
 
     // Unmap the current library
-    if (lib) {
-        dlclose(lib);
+    if (dlib) {
+        dlclose(dlib);
     }
 
     // Load the new library
-    void* tmp_lib = dlopen(libpath, RTLD_NOW);
+    void* tmp_lib = dlopen(dlib_path, RTLD_NOW);
     if (!tmp_lib) {
         printf(HOT_BANNER "Couln't load library: %s\n", dlerror());
         return;
     }
-    lib = tmp_lib;
+    dlib = tmp_lib;
 
     // Try to load the new init function
-    void (*tmp_init)(State*) = (void (*)(State*))dlsym(lib, "init");
+    void (*tmp_init)(State*) = (void (*)(State*))dlsym(dlib, "init");
     if (!tmp_init) {
         printf(HOT_BANNER "Couln't load `init`: %s\n", dlerror());
     }
     else {
-        libinit = tmp_init;
+        dlib_init = tmp_init;
     }
 
     // Try to load the new drop function
-    void (*tmp_drop)(State*) = (void (*)(State*))dlsym(lib, "drop");
+    void (*tmp_drop)(State*) = (void (*)(State*))dlsym(dlib, "drop");
     if (!tmp_drop) {
         printf(HOT_BANNER "Couln't load `drop`: %s\n", dlerror());
     }
     else {
-        libdrop = tmp_drop;
+        dlib_drop = tmp_drop;
     }
 
     // Try to load the new update function
-    void (*tmp_update)(State*) = (void (*)(State*))dlsym(lib, "update");
+    void (*tmp_update)(State*) = (void (*)(State*))dlsym(dlib, "update");
     if (!tmp_update) {
         printf(HOT_BANNER "Couln't load `update`: %s\n", dlerror());
     }
     else {
-        libupdate = tmp_update;
+        dlib_update = tmp_update;
     }
 
     // Try to load the new render function
-    void (*tmp_render)(State*) = (void (*)(State*))dlsym(lib, "render");
+    void (*tmp_render)(State*) = (void (*)(State*))dlsym(dlib, "render");
     if (!tmp_render) {
         printf(HOT_BANNER "Couln't load `render`: %s\n", dlerror());
     }
     else {
-        librender = tmp_render;
+        dlib_render = tmp_render;
     }
 
     printf(HOT_BANNER "Reloaded!\n");
 
-    lastmodtime = GetFileModTime(libpath);
+    lastmodtime = GetFileModTime(dlib_path);
 }
 
 void __init(State* state) {
-    if (libinit) {
-        libinit(state);
+    if (dlib_init) {
+        dlib_init(state);
     }
 }
 
 void __update(State* state) {
-    if (GetFileModTime(libpath) > lastmodtime) {
+    if (GetFileModTime(dlib_path) > lastmodtime) {
         reload();
     }
 
-    if (libupdate) {
-        libupdate(state);
+    if (dlib_update) {
+        dlib_update(state);
     }
 }
 
 void __render(State* state) {
-    if (librender) {
-        librender(state);
+    if (dlib_render) {
+        dlib_render(state);
     }
     else {
         BeginDrawing();
@@ -143,19 +143,28 @@ void __render(State* state) {
 }
 
 void __drop(State* state) {
-    if (libdrop) {
-        libdrop(state);
+    if (dlib_drop) {
+        dlib_drop(state);
     }
 
-    if (lib) {
-        dlclose(lib);
+    if (dlib) {
+        dlclose(dlib);
     }
 }
 
 
-static Lib Main = {
-    .init = __init,
-    .update = __update,
-    .render = __render,
-    .drop = __drop
-};
+inline void lib_init(State *state) {
+    __init(state);
+}
+
+inline void lib_update(State *state) {
+    __update(state);
+}
+
+inline void lib_render(State *state) {
+    __render(state);
+}
+
+inline void lib_drop(State *state) {
+    __drop(state);
+}

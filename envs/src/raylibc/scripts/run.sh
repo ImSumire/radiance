@@ -1,4 +1,4 @@
 #!/bin/sh
 
-radiance/cmd/build.sh
+scripts/build.sh
 target/linux/release

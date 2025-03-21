@@ -1,4 +1,4 @@
-#include "../../src/main.h"
+#include "../src/lib.h"
 
 
 // There's no link with hot.h

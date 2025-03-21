@@ -3,7 +3,7 @@
 DIR="src"
 WATCH_BANNER="\e[35;1mwatch\e[0m"
 
-printf "$WATCH_BANNER welcome\n"
+printf "$WATCH_BANNER Watching for each files of $DIR...\n"
 
 # -q: No "welcome" message
 # -m: monitor continuously
@@ -13,5 +13,5 @@ printf "$WATCH_BANNER welcome\n"
 inotifywait -q -m -r -e close_write "$DIR" |
 while read dir events filename; do
     printf "$WATCH_BANNER $dir$filename modified\n" &&
-    radiance/cmd/scripts/lib.sh
+    scripts/common/dlib.sh
 done
