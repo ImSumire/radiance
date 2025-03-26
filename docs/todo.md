@@ -5,7 +5,7 @@
 - [x] Add raylibc.sh init
 - [x] Create the tar compression automation for each envs
 - [x] Add raylibc.sh safety
-- [ ] Use pkg/ Raylib instead of the user global installation one
+- [x] Use pkg/ Raylib instead of the user global installation one
 - [ ] Add banners and messages to commands and setup
 
 ## Future
