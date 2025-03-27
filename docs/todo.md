@@ -9,7 +9,7 @@
 - [ ] Add banners and messages to commands and setup
 
 ## Future
-- [ ] Add `docs` command (maybe?)
+- [x] Add `docs` command
 - [ ] Platforms support (dev):
     - [x] Linux
     - [ ] Windows
