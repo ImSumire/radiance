@@ -6,10 +6,14 @@
 | Beta               | 1.2.0b2                        |
 | Release candidate  | 1.2.0rc3                       |
 | Release            | 1.2.0                          |
-| Post-release fixes | 1.2.5                          |
+| Post-release fixes | 1.2.0pr1                       |
 
 Source: [Wikipedia](https://en.wikipedia.org/wiki/Software_versioning)
 
+
+## @0.0.1pr1
+- Added banners to commands
+- Empty web pages
 
 ## @0.0.1
 - Removed useless code
