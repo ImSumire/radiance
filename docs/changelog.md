@@ -11,6 +11,13 @@
 Source: [Wikipedia](https://en.wikipedia.org/wiki/Software_versioning)
 
 
+## @0.0.1
+- Removed useless code
+- Added C++ & Raylib environment
+- Added `docs` command
+- Added scene management system for C++ (`radiance/utils/scene.hpp`)
+- Added setup system (`raylibcpp.sh`)
+
 ## @0.0.1b2
 - Re-structured the repository
 - Added setup system (`raylibc.sh`)

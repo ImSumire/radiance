@@ -3,5 +3,5 @@
 #ifdef RADIANCE_HOT
     typedef struct State {} State;
 #else
-    #include "../src/lib.h"
+    #include "../src/lib.hpp"
 #endif

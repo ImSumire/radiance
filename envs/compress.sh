@@ -9,6 +9,6 @@ for item in src/*; do
         cd $item
         tar -cJf "../../$dir.tar.xz" . # "$item"
         echo "Compressed $dir to envs/$dir.tar.xz"
-        cd ..
+        cd ../..
     fi
 done
