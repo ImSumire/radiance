@@ -10,4 +10,4 @@ cc -Ofast \
    src/main.c \
    -Wl,-rpath,target/pkg/raylib/build/raylib \
    -lraylib -lm
-printf " Done."
+printf " Done.\n"

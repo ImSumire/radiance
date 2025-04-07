@@ -10,4 +10,4 @@ g++ -Ofast \
    src/main.cpp \
    -Wl,-rpath,target/pkg/raylib/build/raylib \
    -lraylib -lm
-printf " Done."
+printf " Done.\n"

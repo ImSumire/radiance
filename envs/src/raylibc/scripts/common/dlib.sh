@@ -8,4 +8,4 @@ cc -Og -g \
    radiance/extern.c \
    target/hot/libraylib.so.??? \
    -fPIC -shared -lm
-printf " Done."
+printf " Done.\n"

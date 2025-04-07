@@ -8,4 +8,4 @@ g++ -Og -g \
     radiance/extern.cpp \
     target/hot/libraylib.so.??? \
     -fPIC -shared -lm
-printf " Done."
+printf " Done.\n"

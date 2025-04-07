@@ -9,4 +9,4 @@ g++ -Og -g \
     target/hot/libraylib.so.??? \
     -lltdl -ldl -lm \
     -DRADIANCE_HOT
-printf " Done."
+printf " Done.\n"
