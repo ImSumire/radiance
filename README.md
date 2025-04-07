@@ -8,4 +8,8 @@
 <br>
 
 # Installation
+## C & Raylib
 `curl https://imsumire.github.io/radiance/raylibc.sh | sh`
+
+## C++ & Raylib
+`curl https://imsumire.github.io/radiance/raylibcpp.sh | sh`
