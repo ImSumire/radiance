@@ -24,7 +24,8 @@ else
     printf "$INIT_BANNER Building raylib...\n" &&
     mkdir -p build &&
     cd build &&
-    cmake .. -GNinja -DBUILD_SHARED_LIBS=ON -DWITH_PIC=ON &&
+    cmake .. -GNinja \
+        -DBUILD_SHARED_LIBS=ON -DWITH_PIC=ON -DBUILD_EXAMPLES=OFF &&
     ninja &&
     cd ..
 fi

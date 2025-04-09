@@ -6,6 +6,10 @@ extern "C" {
         init(state);
     }
 
+    void dlib_drop(State* state) {
+        drop(state);
+    }
+
     void dlib_update(State* state) {
         update(state);
     }
@@ -14,7 +18,7 @@ extern "C" {
         render(state);
     }
 
-    void dlib_drop(State* state) {
-        drop(state);
+    void dlib_hotreload(State* state) {
+        hotreload(state);
     }
 }
