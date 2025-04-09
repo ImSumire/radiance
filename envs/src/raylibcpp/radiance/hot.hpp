@@ -126,69 +126,49 @@ void reload(State* state) {
     lastmodtime = GetFileModTime(dlib_path);
 }
 
-void __init(State* state) {
-    if (dlib_init) {
-        dlib_init(state);
-    }
-}
-
-void __drop(State* state) {
-    if (dlib_drop) {
-        dlib_drop(state);
-    }
-
-    if (dlib) {
-        dlclose(dlib);
-    }
-}
-
-void __update(State* state) {
-    if (GetFileModTime(dlib_path) > lastmodtime) {
-        reload(state);
-    }
-
-    if (dlib_update) {
-        dlib_update(state);
-    }
-}
-
-void __render(State* state) {
-    if (dlib_render) {
-        dlib_render(state);
-    }
-    else {
-        BeginDrawing();
-            ClearBackground(BLACK);
-            DrawText("Invalid render function", 20, 20, 24, WHITE);
-        EndDrawing();
-    }
-}
-
-void __hotreload(State* state) {
-    if (dlib_hotreload) {
-        dlib_hotreload(state);
-    }
-}
-
 
 namespace Lib {
     inline void init(State *state) {
-        __init(state);
+        if (dlib_init) {
+            dlib_init(state);
+        }
     }
 
     inline void drop(State *state) {
-        __drop(state);
+        if (dlib_drop) {
+            dlib_drop(state);
+        }
+    
+        if (dlib) {
+            dlclose(dlib);
+        }
     }
 
     inline void update(State *state) {
-        __update(state);
+        if (GetFileModTime(dlib_path) > lastmodtime) {
+            reload(state);
+        }
+    
+        if (dlib_update) {
+            dlib_update(state);
+        }
     }
 
     inline void render(State *state) {
-        __render(state);
+        if (dlib_render) {
+            dlib_render(state);
+        }
+        else {
+            BeginDrawing();
+                ClearBackground(BLACK);
+                DrawText("Invalid render function", 20, 20, 24, WHITE);
+            EndDrawing();
+        }
     }
 
     inline void hotreload(State *state) {
-        __hotreload(state);
+        if (dlib_hotreload) {
+            dlib_hotreload(state);
+        }
     }
 }
