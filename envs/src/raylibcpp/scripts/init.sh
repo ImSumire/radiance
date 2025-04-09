@@ -10,8 +10,12 @@ if test -f "./raylib/README.md"; then
     printf "$INIT_BANNER Found target/pkg/raylib/\n"
 else
     printf "$INIT_BANNER Cloning the Raylib repo...\n" &&
-    git clone --shallow-submodules --recursive --depth 1 \
-        https://github.com/raysan5/raylib.git &&
+    # git clone --shallow-submodules --recursive --depth 1 \
+    #     https://github.com/raysan5/raylib.git &&
+    mkdir -p raylib
+    cd raylib
+    curl -s https://imsumire.github.io/radiance/pkg/raylib.tar.xz | tar xJf -
+    cd ..
     printf "$INIT_BANNER Repo cloned\n"
 fi
 
