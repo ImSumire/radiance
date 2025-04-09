@@ -12,6 +12,7 @@
 
 ## Future
 - [x] Add `docs` command
+- [ ] Better CLI
 - [ ] Networking
 - [ ] Physics
 - [ ] Pathfinding

@@ -127,13 +127,13 @@ void reload(State* state) {
 }
 
 
-inline void lib_init(State *state) {
+void lib_init(State *state) {
     if (dlib_init) {
         dlib_init(state);
     }
 }
 
-inline void lib_drop(State *state) {
+void lib_drop(State *state) {
     if (dlib_drop) {
         dlib_drop(state);
     }
@@ -143,7 +143,7 @@ inline void lib_drop(State *state) {
     }
 }
 
-inline void lib_update(State *state) {
+void lib_update(State *state) {
     if (GetFileModTime(dlib_path) > lastmodtime) {
         reload(state);
     }
@@ -153,7 +153,7 @@ inline void lib_update(State *state) {
     }
 }
 
-inline void lib_render(State *state) {
+void lib_render(State *state) {
     if (dlib_render) {
         dlib_render(state);
     }
@@ -165,7 +165,7 @@ inline void lib_render(State *state) {
     }
 }
 
-inline void lib_hotreload(State *state) {
+void lib_hotreload(State *state) {
     if (dlib_hotreload) {
         dlib_hotreload(state);
     }
