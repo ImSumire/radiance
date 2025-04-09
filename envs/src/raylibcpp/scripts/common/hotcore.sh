@@ -8,5 +8,5 @@ g++ -Og -g \
     src/main.cpp \
     target/hot/libraylib.so.??? \
     -lltdl -ldl -lm \
-    -DRADIANCE_HOT
+    -DHOT
 printf " Done.\n"

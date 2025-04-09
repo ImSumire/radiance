@@ -8,5 +8,5 @@ cc -Og -g \
    src/main.c \
    target/hot/libraylib.so.??? \
    -lltdl -ldl -lm \
-   -DRADIANCE_HOT
+   -DHOT
 printf " Done.\n"

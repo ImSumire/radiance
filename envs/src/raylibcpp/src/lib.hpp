@@ -8,6 +8,9 @@
 // Called once at startup to initilize the state
 void init(State* state) {}
 
+// Cleanup function, called once at shutdown to free the memory
+void drop(State* state) {}
+
 // Update the state each frame
 void update(State* state) {}
 
@@ -19,5 +22,4 @@ void render(State* state) {
     EndDrawing();
 }
 
-// Cleanup function, called once at shutdown to free the memory
-void drop(State* state) {}
+void hotreload(State* state) {}

@@ -1,11 +1,15 @@
 #pragma once
 
-#include "common.hpp"
+#include "../src/lib.hpp"
 
 
 namespace Lib {
     inline void init(State *state) {
         ::init(state);
+    }
+
+    inline void drop(State *state) {
+        ::drop(state);
     }
 
     inline void update(State *state) {
@@ -16,8 +20,8 @@ namespace Lib {
         ::render(state);
     }
 
-    inline void drop(State *state) {
-        ::drop(state);
+    inline void hotreload(State *state) {
+        ::hotreload(state);
     }
 }
 

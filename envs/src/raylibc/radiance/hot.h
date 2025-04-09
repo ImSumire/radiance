@@ -8,7 +8,7 @@
 #include <raylib.h>
 #include <unistd.h>
 
-#include "common.h"
+typedef struct State {} State;
 
 
 #define HOT_BANNER "\x1b[33;1mhot\x1b[0m "
@@ -22,9 +22,10 @@ void (*dlib_init)(State*) = NULL;
 void (*dlib_drop)(State*) = NULL;
 void (*dlib_update)(State*) = NULL;
 void (*dlib_render)(State*) = NULL;
+void (*dlib_hotreload)(State*) = NULL;
 
 
-void reload() {
+void reload(State* state) {
     // Check exists
     int fd = open(dlib_path, O_RDONLY);
     if (fd < 0) {
@@ -109,6 +110,17 @@ void reload() {
         dlib_render = tmp_render;
     }
 
+    // Try to load the new hotreload function
+    void (*tmp_hotreload)(State*) = (void (*)(State*))dlsym(dlib, "hotreload");
+    if (!tmp_hotreload) {
+        printf(HOT_BANNER "Couln't load `hotreload`: %s\n", dlerror());
+    }
+    else {
+        dlib_hotreload = tmp_hotreload;
+    }
+
+    dlib_hotreload(state);
+
     printf(HOT_BANNER "Reloaded!\n");
 
     lastmodtime = GetFileModTime(dlib_path);
@@ -120,9 +132,19 @@ void __init(State* state) {
     }
 }
 
+void __drop(State* state) {
+    if (dlib_drop) {
+        dlib_drop(state);
+    }
+
+    if (dlib) {
+        dlclose(dlib);
+    }
+}
+
 void __update(State* state) {
     if (GetFileModTime(dlib_path) > lastmodtime) {
-        reload();
+        reload(state);
     }
 
     if (dlib_update) {
@@ -142,19 +164,19 @@ void __render(State* state) {
     }
 }
 
-void __drop(State* state) {
-    if (dlib_drop) {
-        dlib_drop(state);
-    }
-
-    if (dlib) {
-        dlclose(dlib);
+void __hotreload(State* state) {
+    if (dlib_hotreload) {
+        dlib_hotreload(state);
     }
 }
 
 
 inline void lib_init(State *state) {
     __init(state);
+}
+
+inline void lib_drop(State *state) {
+    __drop(state);
 }
 
 inline void lib_update(State *state) {
@@ -165,6 +187,6 @@ inline void lib_render(State *state) {
     __render(state);
 }
 
-inline void lib_drop(State *state) {
-    __drop(state);
+inline void lib_hotreload(State *state) {
+    __hotreload(state);
 }

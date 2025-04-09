@@ -1,15 +1,46 @@
 # To Do List
 
-## @0.0.1
-- [x] Implement the C & Raylib env
-- [x] Add raylibc.sh init
-- [x] Create the tar compression automation for each envs
-- [x] Add raylibc.sh safety
-- [x] Use pkg/ Raylib instead of the user global installation one
-- [x] Add banners and messages to commands and setup
+## @0.0.2
+- [ ] Zig & Raylib
+- [ ] Web target
+- [ ] Remove useless & simplify code
+- [ ] Document code
+- [ ] Add `hotreload` lib function
+- [ ] Add some utils
+- [ ] Build system (Makefile)
+- [ ] Find candidates for Physics
 
 ## Future
 - [x] Add `docs` command
+- [ ] Networking
+- [ ] Physics
+- [ ] Pathfinding
+- [ ] UI system
+- [ ] Entity Component System
+- [ ] Async assets
+- [ ] Modding system
+- [ ] Scripting Interface?
+- [ ] Hot-reloading assets
+- [ ] Debugging
+- [ ] Dynamic Loading and Unloading of Assets
+- [ ] Built-in shaders
+- [ ] Multithreading Support
+- [ ] Animation System (Skeletal)?
+- [ ] Particule system (GPU)
+- [ ] Assets extension support
+- [ ] Audio:
+    - [ ] 3D
+    - [ ] Audio effects
+    - [ ] Raycasting?
+- [ ] Data manager
+- [ ] Procedural Generation Tools
+- [ ] 3D?:
+    - [ ] Level of Detail (LOD) Management
+    - [ ] Occlusion Culling
+    - [ ] Virtual Reality (VR) Support
+    - [ ] Augmented Reality (AR) Support
+- [ ] Sample Projects
+- [ ] Community Discord???
 - [ ] Platforms support (dev):
     - [x] Linux
     - [ ] Windows
