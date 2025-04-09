@@ -111,7 +111,7 @@ void reload(State* state) {
     }
 
     // Try to load the new hotreload function
-    void (*tmp_hotreload)(State*) = (void (*)(State*))dlsym(dlib, "hotreload");
+    void (*tmp_hotreload)(State*) = (void (*)(State*))dlsym(dlib, "dlib_hotreload");
     if (!tmp_hotreload) {
         printf(HOT_BANNER "Couln't load `hotreload`: %s\n", dlerror());
     }
