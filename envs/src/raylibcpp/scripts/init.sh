@@ -6,30 +6,17 @@ mkdir -p target/pkg/raylib
 cd target/pkg/raylib
 
 # Include Raylib package (lastest)
-if test -f "./README.md"; then
-    printf "$INIT_BANNER Found target/pkg/raylib/\n"
-else
-    printf "$INIT_BANNER Cloning the Raylib repo...\n" &&
-    curl -s https://imsumire.github.io/radiance/pkg/raylib.tar.xz | tar xJf - &&
-    printf "$INIT_BANNER Repo cloned\n"
-fi
+# https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8
+# thanks @maximizations
+printf "$INIT_BANNER Downloading the last Raylib release...\n" &
+curl -s https://api.github.com/repos/raysan5/raylib/releases/latest \
+    | grep "browser_download_url.*amd" \
+    | cut -d : -f 2,3 \
+    | tr -d \" \
+    | xargs -n 1 curl -L -s \
+    | tar -xz &&
+printf "$INIT_BANNER Release downloaded\n"
 
-# Build Raylib
-if test -f "./build/raylib/libraylib.so"; then
-    printf "$INIT_BANNER Found target/pkg/raylib/libraylib.so\n"
-else
-    printf "$INIT_BANNER Building raylib...\n" &&
-    mkdir -p build &&
-    cd build &&
-    cmake .. -GNinja \
-        -DBUILD_SHARED_LIBS=ON -DWITH_PIC=ON -DBUILD_EXAMPLES=OFF &&
-    ninja &&
-    cd ..
-fi
+mkdir -p ../../hot
 
-# Back to the root
-cd ../../..
- 
-mkdir -p target/hot
-
-cp target/pkg/raylib/build/raylib/libraylib.so.??? target/hot
+find raylib-*_linux_amd64 -name 'libraylib.so.?????' -exec cp {} ../../hot \;
