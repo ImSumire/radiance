@@ -2,7 +2,7 @@
 
 ## @0.0.2
 - [ ] Zig & Raylib
-- [ ] Web target
+- [ ] Web target (https://github.com/raysan5/raylib/wiki/Working-for-Web-%28HTML5%29)
 - [ ] Remove useless & simplify code
 - [ ] Document code
 - [x] Add `hotreload` lib function
@@ -26,9 +26,8 @@
 - [ ] Debugging
 - [ ] Dynamic Loading and Unloading of Assets
 - [ ] Built-in shaders
-- [ ] Multithreading Support
-- [ ] Animation System (Skeletal)?
-- [ ] Particule system (GPU)
+- [ ] Async Support
+- [ ] Particle simulation (GPU)
 - [ ] Assets extension support
 - [ ] Audio:
     - [ ] 3D
