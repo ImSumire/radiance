@@ -11,7 +11,7 @@
 typedef struct State {} State;
 
 
-#define HOT_BANNER "\x1b[33;1mhot\x1b[0m "
+#define HOT_BANNER "\x1b[33;1m  hot\x1b[0m "
 
 
 long lastmodtime = 0;

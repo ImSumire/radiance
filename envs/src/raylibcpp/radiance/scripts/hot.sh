@@ -1,16 +1,11 @@
 #!/bin/sh
 
-mkdir -p target/hot
-
-scripts/common/dlib.sh
-scripts/common/hotcore.sh
-
 # Running
-LD_LIBRARY_PATH=target/hot target/hot/main &
+LD_LIBRARY_PATH=target/hot target/hot/core &
 HOT_PID=$!
 
 # Watch
-scripts/watch.sh &
+radiance/scripts/watch.sh &
 WATCH_PID=$!
 
 # Handle signals

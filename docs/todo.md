@@ -5,10 +5,11 @@
 - [ ] Web target
 - [ ] Remove useless & simplify code
 - [ ] Document code
-- [ ] Add `hotreload` lib function
+- [x] Add `hotreload` lib function
 - [ ] Add some utils
-- [ ] Build system (Makefile)
-- [ ] Find candidates for Physics
+- [x] Add project README.md
+- [x] Build system (Makefile)
+- [x] Find candidates for Physics
 
 ## Future
 - [x] Add `docs` command

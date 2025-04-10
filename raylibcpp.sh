@@ -14,9 +14,8 @@ fi
 curl -s https://imsumire.github.io/radiance/envs/raylibcpp.tar.xz | tar xJf -
 
 # Initialize it if successfuly downloaded
-if [ -f scripts/init.sh ]; then
-    scripts/init.sh
+if [ -f Makefile ]; then
+    make init
 else
     printf "\033[31merror\033[0m An error occured during environment downloading...\n"
-    exit
 fi
