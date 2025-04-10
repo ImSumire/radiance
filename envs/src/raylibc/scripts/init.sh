@@ -20,3 +20,5 @@ printf "$INIT_BANNER Release downloaded\n"
 mkdir -p ../../hot
 
 find raylib-*_linux_amd64 -name 'libraylib.so.?????' -exec cp {} ../../hot \;
+
+printf "$INIT_BANNER Initialization done\n"

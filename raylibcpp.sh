@@ -20,9 +20,3 @@ else
     printf "\033[31merror\033[0m An error occured during environment downloading...\n"
     exit
 fi
-
-if [ -f target/hot/libraylib.so.????? ]; then
-    printf "\033[32msuccess\033[0m Installation done.\n"
-else
-    printf "\033[32merror\033[0m An error occured during environment initialization...\n"
-fi
