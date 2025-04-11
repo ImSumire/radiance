@@ -2,6 +2,9 @@
 
 ## @0.0.2
 - [ ] Zig & Raylib
+- [ ] Python & Pygame CE
+- [ ] Better track of environement versions
+- [ ] Simpler hot-reloading at low-level (like in Python)?
 - [ ] Web target (https://github.com/raysan5/raylib/wiki/Working-for-Web-%28HTML5%29)
 - [ ] Remove useless & simplify code
 - [ ] Document code
