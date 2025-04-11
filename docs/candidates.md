@@ -49,6 +49,8 @@
 - https://www.raylib.com/examples/shaders/loader.html?name=shaders_mesh_instancing
 - https://www.raylib.com/examples/shaders/loader.html?name=shaders_spotlight
 - https://www.raylib.com/examples/shaders/loader.html?name=shaders_hybrid_render
+- https://www.raylib.com/examples/shaders/loader.html?name=shaders_basic_pbr
+- https://www.youtube.com/watch?v=qbDrqARX07o
 
 # Async Support
 - Pool
